@@ -3,7 +3,7 @@ package com.my.bruth;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+
 
 public class Bruth02 {
     /*
@@ -14,6 +14,12 @@ public class Bruth02 {
     1<=E<=15
     1<=S<=28
     1<=M<=19
+
+    연도에 각 1 을 빼면
+    0<=E<=14
+    0<=S<=27
+    0<=M<=18
+    각 15, 28 ,19의 나머지 값계산으로 해결할 수 있다.
 
     1 1 1 이 1 년이고 1 년이 지날 때마다, 세수 모두 1 씩 증가한다. 수가 범위를 넘어가면 1 이된다.
     예를들어 15년은 15 15 15 지만 16년이 되면 1 16 16 이 된다.
@@ -41,16 +47,16 @@ public class Bruth02 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
         String [] arr = str.split(" ");
-        nmgForE = Integer.parseInt(arr[0]);
-        nmgForS = Integer.parseInt(arr[1]);
-        nmgForM = Integer.parseInt(arr[2]);
+        nmgForE = Integer.parseInt(arr[0])-1;
+        nmgForS = Integer.parseInt(arr[1])-1;
+        nmgForM = Integer.parseInt(arr[2])-1;
         getYear();
     }
 
     public static void getYear() {
-        for(int y=1;y<MAXYEAR;y++){
-            if(y%E==nmgForE&&y%S==nmgForS&&y%M==nmgForM){
-                System.out.println(y);
+        for(int y=0;y<MAXYEAR;y++){
+            if((y%E==nmgForE)&&(y%S==nmgForS)&&(y%M==nmgForM)) {
+                System.out.println(y+1);
                 return;
             }
         }
